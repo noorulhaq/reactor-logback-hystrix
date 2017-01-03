@@ -8,6 +8,7 @@
   <packaging>jar</packaging>
 
   <name>reactor-logback-hystrix</name>
+  <description>An extension from reactor-logback addon eriched with hystrix circuit breaker</description>
   <url>http://maven.apache.org</url>
 
   <properties>
