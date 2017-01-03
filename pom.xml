@@ -14,8 +14,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.version>2.3.2</maven.compiler.version>
-    <maven.compiler.source.version>1.6</maven.compiler.source.version>
-    <maven.compiler.target.version>1.6</maven.compiler.target.version>
+    <maven.compiler.source.version>1.7</maven.compiler.source.version>
+    <maven.compiler.target.version>1.7</maven.compiler.target.version>
     <reactor.logback.version>1.1.6.RELEASE</reactor.logback.version>
     <hystrix.core.version>1.5.8</hystrix.core.version>
     <hystrix.metrics.version>1.5.9</hystrix.metrics.version>
