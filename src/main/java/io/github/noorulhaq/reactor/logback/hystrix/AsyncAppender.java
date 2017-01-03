@@ -1,4 +1,4 @@
-package com.noor.reactor.logback.hystrix;
+package io.github.noorulhaq.reactor.logback.hystrix;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import com.netflix.hystrix.*;
