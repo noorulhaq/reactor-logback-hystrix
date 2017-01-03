@@ -7,10 +7,9 @@ import com.netflix.hystrix.exception.HystrixRuntimeException;
 /**
  * Created by noor on 1/2/17.
  */
-public class AsyncAppender extends reactor.logback.AsyncAppender {
+public class AsyncAppender extends reactor.logback.AsyncAppender implements FallbackAction{
 
 
-    private AsyncAppender.FallbackAction fallbackAction = new AsyncAppender.DefaultFallbackAction();
     private int circuitBreakerSleepWindow = 2000;
     private int circuitBreakerErrorThresholdPercentage = 25;
     private int circuitBreakerRequestVolumeThreshold = 5;
@@ -22,8 +21,13 @@ public class AsyncAppender extends reactor.logback.AsyncAppender {
             new HystrixLoggingEventCommand(evt, this).execute();
         }catch (HystrixRuntimeException ex){
             if(ex.getFailureType() == HystrixRuntimeException.FailureType.SHORTCIRCUIT) // Call fallback only when circuit is open
-                fallbackAction.onFallback(evt);
+                onFallback(evt);
         }
+    }
+
+    @Override
+    public void onFallback(ILoggingEvent evt) {
+        System.out.println("[fallback] "+ evt);
     }
 
     protected void logEvent(ILoggingEvent evt){
@@ -52,28 +56,6 @@ public class AsyncAppender extends reactor.logback.AsyncAppender {
             asyncAppender.logEvent(loggingEvent);
             return null;
         }
-    }
-
-
-    public interface FallbackAction{
-        public void onFallback(ILoggingEvent evt);
-    }
-
-    static class DefaultFallbackAction implements FallbackAction {
-
-        @Override
-        public void onFallback(ILoggingEvent evt) {
-            System.out.println(evt);
-        }
-    }
-
-
-    public FallbackAction getFallbackAction() {
-        return fallbackAction;
-    }
-
-    public void setFallbackAction(FallbackAction fallbackAction) {
-        this.fallbackAction = fallbackAction;
     }
 
     public int getCircuitBreakerSleepWindow() {
