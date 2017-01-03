@@ -20,7 +20,7 @@ An extension from reactor-logback addon eriched with hystrix circuit breaker
 	<dependency>
 	   <groupId>io.github.noorulhaq</groupId>
 	   <artifactId>reactor-logback-hystrix</artifactId>
-         <version>1.0.0-SNAPSHOT</version>
+       <version>1.0.0-SNAPSHOT</version>
 	</dependency>
 ```
 
