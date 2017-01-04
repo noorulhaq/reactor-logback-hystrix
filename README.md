@@ -1,6 +1,6 @@
 #Reactor Logback Hystrix
 
-An extension from reactor-logback addon enriched with hystrix circuit breaker.
+An extension of reactor-logback addon enriched with hystrix circuit breaker.
 
 ## Getting it
 
