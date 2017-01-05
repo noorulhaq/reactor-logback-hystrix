@@ -1,66 +1,133 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.github.noorulhaq</groupId>
-  <artifactId>reactor-logback-hystrix</artifactId>
-  <version>1.0.0.RELEASE</version>
-  <packaging>jar</packaging>
+    <groupId>io.github.noorulhaq</groupId>
+    <artifactId>reactor-logback-hystrix</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <name>reactor-logback-hystrix</name>
-  <description>An extension from reactor-logback addon eriched with hystrix circuit breaker</description>
-  <url>http://maven.apache.org</url>
+    <name>reactor-logback-hystrix</name>
+    <description>An extension of reactor-logback addon enriched with hystrix circuit breaker</description>
+    <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.version>2.3.2</maven.compiler.version>
-    <maven.compiler.source.version>1.7</maven.compiler.source.version>
-    <maven.compiler.target.version>1.7</maven.compiler.target.version>
-    <reactor.logback.version>1.1.6.RELEASE</reactor.logback.version>
-    <hystrix.core.version>1.5.8</hystrix.core.version>
-    <hystrix.metrics.version>1.5.9</hystrix.metrics.version>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.version>2.3.2</maven.compiler.version>
+        <reactor.version>2.0.8.RELEASE</reactor.version>
+        <hystrix.metrics.version>1.5.9</hystrix.metrics.version>
+    </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+    <dependencies>
 
-    <dependency>
-      <groupId>org.projectreactor</groupId>
-      <artifactId>reactor-logback</artifactId>
-      <version>${reactor.logback.version}</version>
-    </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
 
-    <dependency>
-      <groupId>com.netflix.hystrix</groupId>
-      <artifactId>hystrix-core</artifactId>
-      <version>${hystrix.core.version}</version>
-    </dependency>
 
-    <dependency>
-      <groupId>com.netflix.hystrix</groupId>
-      <artifactId>hystrix-codahale-metrics-publisher</artifactId>
-      <version>${hystrix.metrics.version}</version>
-    </dependency>
+        <dependency>
+            <groupId>org.projectreactor</groupId>
+            <artifactId>reactor-logback</artifactId>
+            <version>1.1.6.RELEASE</version>
+            <scope>provided</scope>
+        </dependency>
 
-  </dependencies>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-logback</artifactId>
+            <version>${reactor.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-  <build>
-  <plugins>
-  <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>${maven.compiler.version}</version>
-    <configuration>
-      <source>${maven.compiler.source.version}</source>
-      <target>${maven.compiler.target.version}</target>
-    </configuration>
-  </plugin>
-  </plugins>
-  </build>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-codahale-metrics-publisher</artifactId>
+            <version>${hystrix.metrics.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>http://repo.spring.io/libs-snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>http://repo.spring.io/libs-snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchains>
+                        <jdk>
+                            <version>1.6</version>
+                            <vendor>sun</vendor>
+                        </jdk>
+                    </toolchains>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

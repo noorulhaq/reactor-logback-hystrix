@@ -7,31 +7,38 @@ import com.netflix.hystrix.exception.HystrixRuntimeException;
 /**
  * Created by noor on 1/2/17.
  */
+
 public class AsyncAppender extends reactor.logback.AsyncAppender implements FallbackAction{
 
 
-    private int circuitBreakerSleepWindow = 2000;
+    private int circuitBreakerSleepWindow = 30000;
     private int circuitBreakerErrorThresholdPercentage = 25;
     private int circuitBreakerRequestVolumeThreshold = 5;
     private int loggingTimeout = 1000;
 
-    @Override
-    protected void loggingEventDequeued(ILoggingEvent evt) {
+    public void onNext(ILoggingEvent evt){ // reactor 2 & 3
+        executeLoggingCommand(evt);
+    }
+
+    protected void loggingEventDequeued(ILoggingEvent evt) { // reactor 1
+        executeLoggingCommand(evt);
+    }
+
+    private void executeLoggingCommand(ILoggingEvent evt){
         try {
             new HystrixLoggingEventCommand(evt, this).execute();
         }catch (HystrixRuntimeException ex){
-            if(ex.getFailureType() == HystrixRuntimeException.FailureType.SHORTCIRCUIT) // Call fallback only when circuit is open
+            if(ex.getFailureType() == HystrixRuntimeException.FailureType.SHORTCIRCUIT) // Fallback only when circuit is open
                 onFallback(evt);
         }
     }
 
-    @Override
     public void onFallback(ILoggingEvent evt) {
-        System.out.println("[fallback] "+ evt);
+        // Skip logging
     }
 
     protected void logEvent(ILoggingEvent evt){
-        super.loggingEventDequeued(evt);
+        getAppenderImpl().appendLoopOnAppenders(evt);
     }
 
     class HystrixLoggingEventCommand extends HystrixCommand<Void> {
