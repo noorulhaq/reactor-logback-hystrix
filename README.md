@@ -2,6 +2,14 @@
 
 An extension of reactor-logback addon enriched with hystrix circuit breaker.
 
+##Description
+
+This library was developed because of below issue. Please read the comments for further detail.
+https://github.com/reactor/reactor-addons/issues/63
+
+## Log Setup
+
+
 ## Getting it
 
 1) Define maven repository
