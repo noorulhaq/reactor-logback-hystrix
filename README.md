@@ -29,7 +29,7 @@ The libary support all three versions for reactor 1,2 & 3.
 
 ## Logging Setup
 
-Below is the sample logback configuration with cuircuit breaker default values. ***loggingTimeout*** is the maximum time in which the underlying logger is suppose to write log on file system. It is equivalent to ***execution.isolation.thread.timeoutInMilliseconds*** cuircuit breaker configuration. 
+Below is the sample logback configuration with cuircuit breaker default options. ***loggingTimeout*** is the maximum time in which the underlying logger is suppose to write log on file system. It is equivalent to ***execution.isolation.thread.timeoutInMilliseconds*** cuircuit breaker configuration. 
 
 ```xml
 	<appender name="asyncAppender" class="io.github.noorulhaq.reactor.logback.hystrix.AsyncAppender">
