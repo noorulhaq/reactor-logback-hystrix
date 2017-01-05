@@ -1,6 +1,6 @@
 #Reactor Logback Hystrix
 
-An extension of reactor-logback addon enriched with hystrix circuit breaker. This library is developed as a reasult of below issue. Please read the comments for further detail.
+An extension of reactor-logback addon enriched with hystrix circuit breaker. This library is an outcome of below issue. Please read the comments for further detail.
 <br/>https://github.com/reactor/reactor-addons/issues/63
 
 ## Getting it
