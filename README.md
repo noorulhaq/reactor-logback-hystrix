@@ -17,6 +17,24 @@ An extension of reactor-logback addon enriched with hystrix circuit breaker. Thi
 	</repository>
 ```
 
+Provide your required reactor library.
+
+```xml
+	<dependency>
+		<groupId>org.projectreactor</groupId>
+		<artifactId>reactor-logback</artifactId>
+		<version>${version}</version>
+	</dependency>
+```
+  or
+```xml
+	<dependency>
+		<groupId>io.projectreactor</groupId>
+		<artifactId>reactor-logback</artifactId>
+		<version>${version}</version>
+	</dependency>	
+```
+
 2) Add dependency
 ```xml
 	<dependency>
