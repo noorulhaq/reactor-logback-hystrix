@@ -46,5 +46,9 @@ Below is the sample logback configuration with cuircuit breaker default options.
 
 The default fallback implementation will lose logs in case the log writter is unable to write logs on file system. If you want to implement different fallback strategy then give your own AsyncAppender implemention by inheriting **io.github.noorulhaq.reactor.logback.hystrix.AsyncAppender** class and overriding **onFallback** method.
 
+## Metrics
+In case if you are interested to see circuit breaker metrics then follow below link.
+https://github.com/noorulhaq/dropwizard-hystrix-metrics
+
 -------------------------------------
 _Licensed under [Apache Software License 2.0](www.apache.org/licenses/LICENSE-2.0)_
